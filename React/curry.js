@@ -36,7 +36,7 @@ let createCurriedFunction = letsCurry(withThreeParam);
 let reusableCurry = letsCurry(showingReusabilityOfCurry);
 
 console.log(createCurriedFunction(2)(6)(3));
-console.log(reusableCurry("Matthias")("Worku")("Beshah"))
+console.log(reusableCurry("Matthias")("Simon")("Bowen"))
 
 // curry advanced 
 
