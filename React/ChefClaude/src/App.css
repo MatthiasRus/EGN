@@ -68,3 +68,13 @@ header > h1 {
   content: "+";
   margin-right: 5px;
 }
+
+.list-item{
+  margin:30px 25%;
+}
+
+.list-item > li::marker{
+  list-style-type:armenian;
+  color: aqua;
+  
+}
