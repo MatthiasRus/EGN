@@ -1,29 +1,41 @@
-import {useState} from "react"
+import React from "react"
 
-export default function Main(){
+export default function Main() {
 
-        const [ingredients, setIngredients] = useState([])
-     const renderIngredients = ingredients?.map(ingredient => <li key={ingredient}>{ingredient}</li>)
+    const [ingredients, setIngredients] = React.useState([])
+
+    const ingredientsListItems = ingredients.map(ingredient => (
+        <li key={ingredient}>{ingredient}</li>
+    ))
     
+    //React nineteen function, passed to action
+    // <! -- action={addIngredient} -->
 
+    // function addIngredient(formData) {
+    //     const newIngredient = formData.get("ingredient")
+    //     setIngredients(prevIngredients => [...prevIngredients, newIngredient])
+    // }
+        
     function handleSubmit(e){
         e.preventDefault();
         let formData = new FormData(e.currentTarget);
         let newIngredient = formData.get("ingredient");
-       setIngredients(prevIngredients => [...prevIngredients,newIngredient]);
-           }
-
-
+        setIngredients(prevIngredients => [...prevIngredients, newIngredient])
+        e.currentTarget.reset();
+    }
     return (
         <main className="mainContainer">
-            <form className="add-ingredient" onSubmit={handleSubmit}>
-                
-                    <input aria-label ="add ingredient" type="text" placeholder="e.g oregano" id="input" name="ingredient" />
-                
-                <button className="search"> Add ingredient</button>
+            <form onSubmit={handleSubmit} className="add-ingredient"> 
+                <input
+                    type="text"
+                    placeholder="e.g. oregano"
+                    aria-label="Add ingredient"
+                    name="ingredient"
+                />
+                <button>Add ingredient</button>
             </form>
             <ul className="list-item">
-                {renderIngredients}
+                {ingredientsListItems}
             </ul>
         </main>
     )
