@@ -5,9 +5,6 @@ export default function Main() {
 
     const [ingredients, setIngredients] = React.useState(["all the main spices", "pasta", "ground beef", "tomato paste"])
 
-    const ingredientsListItems = ingredients.map(ingredient => (
-        <li key={ingredient}>{ingredient}</li>
-    ))
     const [recipeShown, setRecipeShown] = React.useState(false)
     
     function toggleRecipeShown() {
@@ -42,7 +39,7 @@ export default function Main() {
                 <button>Add ingredient</button>
             </form>
             {ingredients.length> 0 && <IngredientList
-             listItem = {ingredientsListItems} 
+             
             ingredients={ingredients}
                 toggleRecipeShown = {toggleRecipeShown}
             />}
