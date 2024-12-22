@@ -1,14 +1,17 @@
 import React from "react"
 import IngredientList from "./IngredientList";
 import ClaudeRecipe from "./chefClaude";
+import {getRecipeFromMistral} from "../../ai"
+
 export default function Main() {
 
-    const [ingredients, setIngredients] = React.useState(["all the main spices", "pasta", "ground beef", "tomato paste"])
+    const [ingredients, setIngredients] = React.useState([])
 
-    const [recipeShown, setRecipeShown] = React.useState(false)
+    const [recipe, setRecipe] = React.useState("")
     
-    function toggleRecipeShown() {
-        setRecipeShown(recipeShown => !recipeShown)
+    async function getRecipe() {
+        const result = await getRecipeFromMistral(ingredients)
+        setRecipe(() => result)
     }
     //React nineteen function, passed to action
     // <! -- action={addIngredient} -->
@@ -40,10 +43,10 @@ export default function Main() {
             </form>
             {ingredients.length> 0 && <IngredientList
             ingredients={ingredients}
-                toggleRecipeShown = {toggleRecipeShown}
+                getRecipe = {getRecipe}
             />}
 
-            {recipeShown&&<ClaudeRecipe/>}
+            {recipe&&<ClaudeRecipe recipe={recipe}/>}
         </main>
     )
 }
