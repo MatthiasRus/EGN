@@ -1,8 +1,12 @@
-import Header from "./components/Header.jsx"
 import './App.css'
+import Odin from "./components/ODIN"
 function App() {
   return (
-    <Header/>
+    <>
+    <h1>I am coder.</h1>
+    <Odin></Odin>
+    </>
+    
   )
 };
      
