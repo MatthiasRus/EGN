@@ -6,7 +6,7 @@ import Template from './components/Template.jsx'
 
 function App() {
   const [activeState, setActiveState] = useState("Contact");
-  
+
   const [contact, setContact] = useState({
     FirstName:"",
     LastName:"",
@@ -42,7 +42,6 @@ const [awards, setAwards] = useState({
 function handleClick(e){  
     e.preventDefault()
     setActiveState(e.target.innerText)
-    console.log(activeState)
 }
 
   return (
@@ -57,7 +56,14 @@ function handleClick(e){
             ExperienceInfo={[experience, setExperience]}
             AwardsInfo={[awards, setAwards]}
       /></div>
-      <div className="template"><Template data={contact}/></div>
+      <div className="template"><Template active={activeState}
+       data={
+        {
+          "Contact": contact,
+          "Education" : education,
+          "Experience" : experience,
+          "Awards" : awards
+       }}/></div>
     </div>
   )
 }

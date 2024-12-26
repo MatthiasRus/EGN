@@ -80,7 +80,7 @@ export default function Contact({contact,setContact}){
         />
     </fieldset>
 
-    <button type="submit">Submit</button>
+    <button type="submit">Save</button>
 </form>
 
 

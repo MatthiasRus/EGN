@@ -21,7 +21,8 @@ export default function Awards({ awards, setAwards }) {
                     <input 
                         type="text" 
                         id="awardTitle" 
-                        name="awardTitle" 
+                        name="awardTitle"
+                        value={awards.awardTitle} 
                         onChange={handleChange} 
                     />
                     
@@ -30,6 +31,7 @@ export default function Awards({ awards, setAwards }) {
                         type="text" 
                         id="organization" 
                         name="organization" 
+                        value={awards.organization}
                         onChange={handleChange} 
                     />
                     
@@ -37,7 +39,8 @@ export default function Awards({ awards, setAwards }) {
                     <input 
                         type="date" 
                         id="dateReceived" 
-                        name="dateReceived" 
+                        name="dateReceived"
+                        value={awards.dateReceived} 
                         onChange={handleChange} 
                     />
                     
@@ -47,11 +50,12 @@ export default function Awards({ awards, setAwards }) {
                         name="description" 
                         rows="4" 
                         cols="30" 
+                        value = {awards.description}
                         onChange={handleChange}
                     ></textarea>
                 </fieldset>
                 
-                <button type="submit">Submit</button>
+                <button type="submit">Save</button>
             </form>
         </>
     );

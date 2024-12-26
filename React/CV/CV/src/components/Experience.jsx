@@ -1,4 +1,4 @@
-export default function Experience({Experience, setExperience}){
+export default function Experience({experience, setExperience}){
 
     function handleSubmit(e){
         e.preventDefault();
@@ -6,7 +6,7 @@ export default function Experience({Experience, setExperience}){
 
     function handleChange(e){
         setExperience({
-            ...Experience,
+            ...experience,
             [e.target.name] : e.target.value
         })
     }
@@ -21,6 +21,7 @@ export default function Experience({Experience, setExperience}){
             type="text" 
             id="companyName" 
             name="companyName" 
+            value={experience.companyName}
             onChange={handleChange} 
         />
 
@@ -29,6 +30,7 @@ export default function Experience({Experience, setExperience}){
             type="text" 
             id="positionTitle" 
             name="positionTitle" 
+            value={experience.positionTitle}
             onChange={handleChange} 
         />
 
@@ -38,6 +40,7 @@ export default function Experience({Experience, setExperience}){
             name="responsibilities" 
             rows="4" 
             cols="30" 
+            value={experience.responsibilities}
             onChange={handleChange}
         ></textarea>
 
@@ -46,6 +49,7 @@ export default function Experience({Experience, setExperience}){
             type="date" 
             id="dateFrom" 
             name="dateFrom" 
+            value={experience.dateFrom}
             onChange={handleChange} 
         />
 
@@ -54,11 +58,12 @@ export default function Experience({Experience, setExperience}){
             type="date" 
             id="dateUntil" 
             name="dateUntil" 
+            value={experience.dateUntil}
             onChange={handleChange} 
         />
     </fieldset>
 
-    <button type="submit">Submit</button>
+    <button type="submit">Save</button>
 </form>
 
 

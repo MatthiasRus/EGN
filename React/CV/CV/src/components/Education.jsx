@@ -9,6 +9,7 @@ export default function Education({education, setEducation}){
             [e.target.name] : e.target.value
         })
     }
+
     return(
         <>
         <form onSubmit={handleSubmit}>
@@ -20,6 +21,7 @@ export default function Education({education, setEducation}){
             type="text" 
             id="schoolName" 
             name="schoolName" 
+            value={education.schoolName}
             onChange={handleChange} 
         />
 
@@ -28,6 +30,7 @@ export default function Education({education, setEducation}){
             type="text" 
             id="titleOfStudy" 
             name="titleOfStudy" 
+            value={education.titleOfStudy}
             onChange={handleChange} 
         />
 
@@ -36,6 +39,7 @@ export default function Education({education, setEducation}){
             type="date" 
             id="dateFrom" 
             name="dateFrom" 
+            value={education.dateFrom}
             onChange={handleChange} 
         />
 
@@ -44,11 +48,12 @@ export default function Education({education, setEducation}){
             type="date" 
             id="dateUntil" 
             name="dateUntil" 
+            value={education.dateUntil}
             onChange={handleChange} 
         />
     </fieldset>
 
-    <button type="submit">Submit</button>
+    <button type="submit">Save</button>
 </form>
 
         </>
