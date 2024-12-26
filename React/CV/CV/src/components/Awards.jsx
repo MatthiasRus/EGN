@@ -1,6 +1,23 @@
-export default function Awards({ awards, setAwards }) {
+import {useState} from 'react'
+
+export default function Awards({initials, awards, setAwards }) {
+    const [addSection, setAddSection] = useState(false);
+
+    function toggle(){
+        setAddSection(!addSection);
+    }
     function handleSubmit(e) {
         e.preventDefault();
+        const section = document.querySelector(".sectionHolder");
+        const form = e.currentTarget.closest("form");
+        const p = document.createElement("p");
+        const award = form.querySelector("#awardTitle");
+        p.innerHTML = award.value;
+
+        section.append(p);
+
+        setAddSection(!addSection);
+        setAwards(initials)
         
     }
 
@@ -12,8 +29,9 @@ export default function Awards({ awards, setAwards }) {
     }
 
     return (
-        <>
-            <form onSubmit={handleSubmit}>
+        <div className='sectionHolder'>
+            <button onClick={toggle}>Add Award</button>
+            {addSection && <form >
                 <fieldset>
                     <legend>Award Details</legend>
                     
@@ -55,8 +73,8 @@ export default function Awards({ awards, setAwards }) {
                     ></textarea>
                 </fieldset>
                 
-                <button type="submit">Save</button>
-            </form>
-        </>
+                <button type="submit" onClick={handleSubmit}>Save</button>
+            </form>}
+        </div>
     );
 }

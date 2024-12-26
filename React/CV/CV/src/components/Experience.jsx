@@ -1,7 +1,31 @@
-export default function Experience({experience, setExperience}){
+import React from 'react'
 
+export default function Experience({initials,experience, setExperience}){
+    const [isEditing, setIsEditing] = React.useState(false);
+    const [savedExp, setSavedExp] = React.useState(null);
+    const [addSection, setAddSection] = React.useState(false);
+
+    function toggle(){
+        setAddSection(!addSection);
+    }
     function handleSubmit(e){
         e.preventDefault();
+        if (isEditing){
+            setSavedExp(experience);
+            setIsEditing(false);
+        }
+        else{
+            setSavedExp(experience)
+        }
+        const section = document.querySelector(".sectionHolder");
+        const form = e.currentTarget.closest("form");
+        const p = document.createElement("p");
+        const exp = form.querySelector("#companyName");
+        p.innerHTML = exp.value;
+
+        section.append(p);
+        setAddSection(!addSection)
+        setExperience(initials)
     }
 
     function handleChange(e){
@@ -10,9 +34,17 @@ export default function Experience({experience, setExperience}){
             [e.target.name] : e.target.value
         })
     }
+
+    function handleEditing(){
+            if (savedExp){
+                setExperience(savedExp);
+                setIsEditing(true);
+            }
+    }
     return (
-        <>
-        <form onSubmit={handleSubmit}>
+        <div className="sectionHolder">
+            <button onClick={toggle}>Add Experience</button>
+        {addSection && <form className='expForm'>
     <fieldset>
         <legend>Experience Details</legend>
 
@@ -21,7 +53,7 @@ export default function Experience({experience, setExperience}){
             type="text" 
             id="companyName" 
             name="companyName" 
-            value={experience.companyName}
+            value={experience.companyName || ''}
             onChange={handleChange} 
         />
 
@@ -30,7 +62,7 @@ export default function Experience({experience, setExperience}){
             type="text" 
             id="positionTitle" 
             name="positionTitle" 
-            value={experience.positionTitle}
+            value={experience.positionTitle || ''}
             onChange={handleChange} 
         />
 
@@ -40,7 +72,7 @@ export default function Experience({experience, setExperience}){
             name="responsibilities" 
             rows="4" 
             cols="30" 
-            value={experience.responsibilities}
+            value={experience.responsibilities || ''}
             onChange={handleChange}
         ></textarea>
 
@@ -49,7 +81,7 @@ export default function Experience({experience, setExperience}){
             type="date" 
             id="dateFrom" 
             name="dateFrom" 
-            value={experience.dateFrom}
+            value={experience.dateFrom || ''}
             onChange={handleChange} 
         />
 
@@ -58,15 +90,16 @@ export default function Experience({experience, setExperience}){
             type="date" 
             id="dateUntil" 
             name="dateUntil" 
-            value={experience.dateUntil}
+            value={experience.dateUntil || ''}
             onChange={handleChange} 
         />
     </fieldset>
 
-    <button type="submit">Save</button>
-</form>
+    <button type="submit" onClick={handleSubmit}>Save</button>
+    <button onClick={handleEditing}>Edit</button>
+</form>}
 
 
-        </>
+        </div>
     )
 }

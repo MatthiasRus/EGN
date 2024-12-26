@@ -1,6 +1,26 @@
-export default function Education({education, setEducation}){
-    function handleSubmit(e){
+import {useState} from 'react'
+
+export default function Education({initials, education, setEducation}){
+    const [addSection, setAddSection] = useState(false);
+
+    function toggleSection(e){
         e.preventDefault();
+        setAddSection(!addSection);
+    }
+
+    function handleSubmit(e){
+        const section = e.currentTarget.closest(".sectionHolder");
+        const form = e.currentTarget.closest("form")
+        const school = form.querySelector("#schoolName");
+        let p = document.createElement("p")
+
+        e.preventDefault();
+        setAddSection(!addSection)
+        p.innerHTML = school.value
+        section.append(
+            p
+        )
+        setEducation(initials)
     }
 
     function handleChange(e){
@@ -9,10 +29,11 @@ export default function Education({education, setEducation}){
             [e.target.name] : e.target.value
         })
     }
-
+    
     return(
-        <>
-        <form onSubmit={handleSubmit}>
+        <div className='sectionHolder'>
+        <button onClick={toggleSection}>Add Education</button>
+        {addSection && <form >
     <fieldset>
         <legend>Educational Experience</legend>
 
@@ -53,9 +74,10 @@ export default function Education({education, setEducation}){
         />
     </fieldset>
 
-    <button type="submit">Save</button>
+    <button type="submit" onClick={handleSubmit}>Save</button>
 </form>
 
-        </>
+}
+        </div>
     )
 }

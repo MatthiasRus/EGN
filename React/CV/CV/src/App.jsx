@@ -6,8 +6,7 @@ import Template from './components/Template.jsx'
 
 function App() {
   const [activeState, setActiveState] = useState("Contact");
-
-  const [contact, setContact] = useState({
+  const initialContact = {
     FirstName:"",
     LastName:"",
     Email:"",
@@ -15,29 +14,32 @@ function App() {
     City:"",
     Country:"",
     PostalCode:""
-});
+}
 
-const [experience, setExperience] = useState({
+const [contact, setContact] = useState(initialContact);
+const initialExperience = {
   companyName : "",
   positionTitle: "",
   responsibilities:"",
   dateFrom:"",
   dateUntil:""
-});
+}
+const [experience, setExperience] = useState(initialExperience);
 
-const [education, setEducation] = useState({
+const initialEduc = {
   schoolName : "",
   titleOfStudy: "",
   dateFrom:"",
   dateUntil:""
-});
-
-const [awards, setAwards] = useState({
+}
+const [education, setEducation] = useState(initialEduc);
+const initialAward = {
   awardTitle : "",
   organization: "",
   dateReceived:"",
   description:"",
-});
+}
+const [awards, setAwards] = useState(initialAward);
 
 function handleClick(e){  
     e.preventDefault()
@@ -51,7 +53,13 @@ function handleClick(e){
       </div>
       <div className="main"><Info
             buttonValue={activeState}
-            ContactInfo={[contact,setContact]}
+            initials = {{
+              cont : initialContact,
+              educ : initialEduc,
+              exp : initialExperience,
+              awards : initialAward,
+            }}
+            ContactInfo={[contact,setContact,]}
             EducationInfo={[education, setEducation]}
             ExperienceInfo={[experience, setExperience]}
             AwardsInfo={[awards, setAwards]}

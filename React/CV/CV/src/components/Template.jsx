@@ -30,7 +30,7 @@ export default function Template({data}){
       <p><strong>Company Name:</strong> <span id="companyName">{data["Experience"].companyName}</span></p>
       <p><strong>Position Title:</strong> <span id="positionTitle">{data["Experience"].positionTitle}</span></p>
       <p><strong>Main Responsibilities:</strong></p>
-      <p id="responsibilities"></p>
+      <p id="responsibilities">{data["Experience"].responsibilities}</p>
       <p><strong>DatesFrom:</strong> <span id="experienceDates1">{data["Experience"].dateFrom}</span></p>
       <p><strong>DatesUntil:</strong> <span id="experienceDates2">{data["Experience"].dateUntil}</span></p>
     </div>

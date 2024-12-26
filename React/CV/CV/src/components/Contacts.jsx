@@ -2,6 +2,7 @@ export default function Contact({contact,setContact}){
 
     function handleSubmit(e){
         e.preventDefault();
+        setContact(contact)
         // e.target.reset();
     };
     function handleChange(e){
@@ -81,6 +82,7 @@ export default function Contact({contact,setContact}){
     </fieldset>
 
     <button type="submit">Save</button>
+    <button>Edit</button>
 </form>
 
 
