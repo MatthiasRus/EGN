@@ -12,7 +12,7 @@ export default function SideBar({handleClick}){
        <button onClick={handleClick}>Experience</button>
        <button onClick={handleClick}>Awards</button>
 
-       <button>Download CV</button>
+       <button onClick={handleClick}>Download</button>
        </div>
     )
 }

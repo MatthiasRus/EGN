@@ -155,3 +155,17 @@ ul {
 .contact-info p {
   margin: 5px 0;
 }
+
+.collection{
+  max-width: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sectionHolder{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+}

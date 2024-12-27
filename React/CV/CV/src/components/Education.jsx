@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-export default function Education({initials, education, setEducation}){
+export default function Education({addEduc,setAddEduc,initials, education, setEducation}){
     const [addSection, setAddSection] = useState(false);
 
     function toggleSection(e){
@@ -9,17 +9,17 @@ export default function Education({initials, education, setEducation}){
     }
 
     function handleSubmit(e){
-        const section = e.currentTarget.closest(".sectionHolder");
-        const form = e.currentTarget.closest("form")
-        const school = form.querySelector("#schoolName");
-        let p = document.createElement("p")
-
         e.preventDefault();
+        let newEduc = {
+            schoolName : education.schoolName,
+            titleOfStudy : education.titleOfStudy,
+            dateFrom : education.dateFrom,
+            dateUntil :education.dateUntil
+
+        }
+
+        setAddEduc([...addEduc,newEduc]);
         setAddSection(!addSection)
-        p.innerHTML = school.value
-        section.append(
-            p
-        )
         setEducation(initials)
     }
 
@@ -30,9 +30,29 @@ export default function Education({initials, education, setEducation}){
         })
     }
     
+    function AddEduc({school,field,dateFrom,dateUntil}){
+        return(
+            <div className="collection">
+                <p className="school">{school}</p>
+                <p className="field" style={{display:'none'}}>{field}</p>
+                <p className="dateFrom" style={{display:'none'}}>{dateFrom}</p>
+                <p className="dateUntil" style={{display:'none'}}>{dateUntil}</p>
+                <button className='editEduc'>Edit</button>
+            </div>
+        )
+    }
     return(
+        <>
         <div className='sectionHolder'>
-        <button onClick={toggleSection}>Add Education</button>
+            {!addSection && addEduc.map((educ,index) => (
+                <AddEduc
+                key={index}
+                school={educ.schoolName}
+                field={educ.titleOfStudy}
+                dateFrom={educ.dateFrom}
+                dateUntil={educ.dateUntil}
+                />
+            ))}
         {addSection && <form >
     <fieldset>
         <legend>Educational Experience</legend>
@@ -79,5 +99,7 @@ export default function Education({initials, education, setEducation}){
 
 }
         </div>
+        <button onClick={toggleSection}>{addSection ? "Close" : "Add Education"}</button>
+        </>
     )
 }

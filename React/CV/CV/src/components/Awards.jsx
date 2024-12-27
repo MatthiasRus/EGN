@@ -1,21 +1,34 @@
 import {useState} from 'react'
 
-export default function Awards({initials, awards, setAwards }) {
+export default function Awards({addAward, setAddAward,initials, awards, setAwards }) {
     const [addSection, setAddSection] = useState(false);
 
     function toggle(){
         setAddSection(!addSection);
     }
+
+    function AddAward({title,organization,date,description}){
+        return (
+            <div className="collection">
+                <p className="titleAward">{title}</p>
+                <p className="organization" style={{display:'none'}}>{organization}</p>
+                <p className="date" style={{display:'none'}}>{date}</p>
+                <p className="description" style={{display:'none'}}>{description}</p>
+                <button className='editAward'>Edit</button>
+            </div>
+        )
+    }
+
     function handleSubmit(e) {
         e.preventDefault();
-        const section = document.querySelector(".sectionHolder");
-        const form = e.currentTarget.closest("form");
-        const p = document.createElement("p");
-        const award = form.querySelector("#awardTitle");
-        p.innerHTML = award.value;
+        let newAward = {
+            awardTitle : awards.awardTitle,
+            organization : awards.organization,
+            dateReceived : awards.dateReceived,
+            description : awards.description
+        }
 
-        section.append(p);
-
+       setAddAward([...addAward,newAward])
         setAddSection(!addSection);
         setAwards(initials)
         
@@ -29,8 +42,19 @@ export default function Awards({initials, awards, setAwards }) {
     }
 
     return (
-        <div className='sectionHolder'>
-            <button onClick={toggle}>Add Award</button>
+       <> <div className='sectionHolder'>
+        {!addSection && <div className="awards">
+            {addAward.map((award,index) => (
+                <AddAward 
+                    key={index}
+                    title = {award.awardTitle}
+                    organization={award.organization}
+                    date = {award.dateReceived}
+                    description={award.description}
+                ></AddAward>
+            ))}
+        </div>}
+            
             {addSection && <form >
                 <fieldset>
                     <legend>Award Details</legend>
@@ -76,5 +100,7 @@ export default function Awards({initials, awards, setAwards }) {
                 <button type="submit" onClick={handleSubmit}>Save</button>
             </form>}
         </div>
+        <button onClick={toggle} className='add'>Add Award</button>
+        </>
     );
 }

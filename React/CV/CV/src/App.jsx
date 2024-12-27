@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import SideBar from './components/SideBar.jsx'
 import Info from './components/Info.jsx'
-import Template from './components/Template.jsx'
+// import Template from './components/Template.jsx'
 
 function App() {
   const [activeState, setActiveState] = useState("Contact");
@@ -63,15 +63,14 @@ function handleClick(e){
             EducationInfo={[education, setEducation]}
             ExperienceInfo={[experience, setExperience]}
             AwardsInfo={[awards, setAwards]}
-      /></div>
-      <div className="template"><Template active={activeState}
-       data={
-        {
-          "Contact": contact,
-          "Education" : education,
-          "Experience" : experience,
-          "Awards" : awards
-       }}/></div>
+            TemplateInfo={{
+              "Contact": contact,
+              "Education" : education,
+              "Experience" : experience,
+              "Awards" : awards
+           }}
+      />
+      </div>
     </div>
   )
 }
