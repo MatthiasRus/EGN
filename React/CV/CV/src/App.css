@@ -1,10 +1,9 @@
-/* General Styles */
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #000; /* Changed to black */
-  color: #fff; /* Text color changed to white */
+  background-color: #000; 
+  color: #fff; 
   line-height: 1.6;
 }
 
@@ -19,14 +18,13 @@ h1, h2, h3 {
   margin: 20px auto;
 }
 
-/* Form Styles */
 form {
   display: flex;
   flex-direction: column;
   width: 90%;
   max-width: 600px;
   margin: 30px auto;
-  background-color: #1a1a1a; /* Darker background for form */
+  background-color: #1a1a1a;
   padding: 25px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
@@ -36,7 +34,7 @@ form {
 form h2 {
   text-align: center;
   font-size: 24px;
-  color: #3498db; /* Blue heading color */
+  color: #3498db; 
   margin-bottom: 20px;
 }
 
@@ -45,7 +43,7 @@ fieldset {
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 8px;
-  background: #222; /* Slightly lighter than the background */
+  background: #222; 
 }
 
 legend {
@@ -79,7 +77,7 @@ textarea {
 }
 
 button {
-  background-color: #3498db; /* Blue button */
+  background-color: #3498db; 
   color: white;
   border: none;
   border-radius: 5px;
@@ -92,14 +90,13 @@ button {
 
 button:hover {
   background-color: #1d6fa5;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Added shadow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
 }
 
-/* Sidebar Button Styles */
 .sidebar button {
   display: block;
   width: 100%;
-  margin: 10px 0; /* Added gap between buttons */
+  margin: 10px 0; 
   padding: 12px;
   background-color: #1a1a1a;
   color: #fff;
@@ -114,7 +111,6 @@ button:hover {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-/* CV Template Styles */
 .cv-container {
   width: 80%;
   max-width: 800px;
@@ -177,29 +173,28 @@ ul {
   margin: 5px 0;
 }
 
-/* Collection Styles */
 .collection {
   width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px; /* Added gap between items */
-  border: 2px solid #3498db; /* 3D effect border */
+  gap: 20px; 
+  border: 2px solid #3498db; 
   border-radius: 10px;
   padding: 20px;
-  background: linear-gradient(145deg, #1a1a1a, #333); /* Subtle gradient */
+  background: linear-gradient(145deg, #1a1a1a, #333); 
   box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5), 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Section Holder with 3D Border */
+
 .sectionHolder {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   padding: 20px;
-  gap: 20px; /* Added gap between items */
-  border: 2px solid #3498db; /* 3D effect border */
+  gap: 20px; 
+  border: 2px solid #3498db; 
   border-radius: 10px;
-  background: linear-gradient(145deg, #1a1a1a, #333); /* Subtle gradient */
-  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5), 2px 2px 10px rgba(0, 0, 0, 0.5); /* 3D shadow */
+  background: linear-gradient(145deg, #1a1a1a, #333); 
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5), 2px 2px 10px rgba(0, 0, 0, 0.5); 
 }
