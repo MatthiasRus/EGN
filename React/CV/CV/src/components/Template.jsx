@@ -99,10 +99,11 @@ export default function Template({ data }) {
                   </div>
               </main>
 
-              <footer className="cv-footer">
-                  <button onClick={handleDownload}>Download</button>
-              </footer>
+             
           </div>
+          <footer className="cv-footer">
+                  <button onClick={handleDownload}><i className="fas fa-download"></i>Download</button>
+              </footer>
       </>
   );
 }
