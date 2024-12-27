@@ -70,12 +70,15 @@ export default function Experience({addExp,setAddExp, initials, experience, setE
                 <p className="responsibilities" style={{display:'none'}}>{exp.responsibilities}</p>
                 <p className="dateFrom" style={{display:'none'}}>{exp.dateFrom}</p>
                 <p className="dateUntil" style={{display:'none'}}>{exp.dateUntil}</p>
+                <div className="editDelete">
                 <button onClick={() => handleEditing(index)} className="edit">
     <i className="fas fa-edit"></i>
 </button>
 <button onClick={() => handleDeleting(index)} className="delete">
     <i className="fas fa-trash"></i>
 </button>
+                </div>
+                
 
             </div>
         );

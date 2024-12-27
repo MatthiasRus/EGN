@@ -62,12 +62,15 @@ export default function Education({addEduc,setAddEduc,initials, education, setEd
                 <p className="field" style={{display:'none'}}>{educ.titleOfStudy}</p>
                 <p className="dateFrom" style={{display:'none'}}>{educ.dateFrom}</p>
                 <p className="dateUntil" style={{display:'none'}}>{educ.dateUntil}</p>
+                <div className="editDelete">
                 <button onClick={() => handleEdit(index)} className="edit">
     <i className="fas fa-edit"></i>
 </button>
 <button onClick={() => handleDelete(index)} className="delete">
     <i className="fas fa-trash"></i>
 </button>
+                </div>
+                
 
             </div>
         )
