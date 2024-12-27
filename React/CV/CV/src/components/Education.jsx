@@ -59,7 +59,7 @@ export default function Education({addEduc,setAddEduc,initials, education, setEd
                 <p className="field" style={{display:'none'}}>{educ.titleOfStudy}</p>
                 <p className="dateFrom" style={{display:'none'}}>{educ.dateFrom}</p>
                 <p className="dateUntil" style={{display:'none'}}>{educ.dateUntil}</p>
-                <button onClick={() => handleEdit(index)} className='editEduc'>Edit</button>
+                <button onClick={() => handleEdit(index)} className='edit'>Edit</button>
             </div>
         )
     }
@@ -82,7 +82,7 @@ export default function Education({addEduc,setAddEduc,initials, education, setEd
             type="text" 
             id="schoolName" 
             name="schoolName" 
-            value={education.schoolName}
+            value={education.schoolName || ''}
             onChange={handleChange} 
         />
 
@@ -91,7 +91,7 @@ export default function Education({addEduc,setAddEduc,initials, education, setEd
             type="text" 
             id="titleOfStudy" 
             name="titleOfStudy" 
-            value={education.titleOfStudy}
+            value={education.titleOfStudy || ''}
             onChange={handleChange} 
         />
 
@@ -100,7 +100,7 @@ export default function Education({addEduc,setAddEduc,initials, education, setEd
             type="date" 
             id="dateFrom" 
             name="dateFrom" 
-            value={education.dateFrom}
+            value={education.dateFrom || ''}
             onChange={handleChange} 
         />
 
@@ -109,7 +109,7 @@ export default function Education({addEduc,setAddEduc,initials, education, setEd
             type="date" 
             id="dateUntil" 
             name="dateUntil" 
-            value={education.dateUntil}
+            value={education.dateUntil || ''}
             onChange={handleChange} 
         />
     </fieldset>
@@ -119,7 +119,7 @@ export default function Education({addEduc,setAddEduc,initials, education, setEd
 
 }
         </div>
-        <button onClick={toggleSection}>{addSection ? "Close" : "Add Education"}</button>
+        <button onClick={toggleSection} className='addSection'>{addSection ? "Close" : "Add Education"}</button>
         </>
     )
 }

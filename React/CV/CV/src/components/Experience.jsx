@@ -65,7 +65,7 @@ export default function Experience({addExp,setAddExp, initials, experience, setE
                 <p className="responsibilities" style={{display:'none'}}>{exp.responsibilities}</p>
                 <p className="dateFrom" style={{display:'none'}}>{exp.dateFrom}</p>
                 <p className="dateUntil" style={{display:'none'}}>{exp.dateUntil}</p>
-                <button className="editExp" onClick={() => handleEditing(index)}>
+                <button className="edit" onClick={() => handleEditing(index)}>
                     Edit
                 </button>
             </div>
@@ -73,9 +73,10 @@ export default function Experience({addExp,setAddExp, initials, experience, setE
     }
 
     return (
-        <>
+        <
+        >
             <div className="sectionHolder">
-                {addExp.map((exp, index) => (
+                {!addSection && addExp.map((exp, index) => (
                     <AddExp key={index} exp={exp} index={index} />
                 ))}
 

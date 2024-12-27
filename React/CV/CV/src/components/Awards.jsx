@@ -21,7 +21,7 @@ export default function Awards({addAward, setAddAward,initials, awards, setAward
                 <p className="organization" style={{display:'none'}}>{award.organization}</p>
                 <p className="date" style={{display:'none'}}>{award.dateReceived}</p>
                 <p className="description" style={{display:'none'}}>{award.description}</p>
-                <button className='editAward' onClick={() => handleEdit(index)}>Edit</button>
+                <button className='edit' onClick={() => handleEdit(index)}>Edit</button>
             </div>
         )
     }

@@ -4,7 +4,7 @@ import Experience from "./Experience"
 import Awards from "./Awards"
 import Template from "./Template"
 import {useState} from 'react'
-export default function Info({buttonValue, initials, ContactInfo, EducationInfo,ExperienceInfo,AwardsInfo, TemplateInfo}){
+export default function Info({buttonValue, initials, ContactInfo, EducationInfo,ExperienceInfo,AwardsInfo}){
     const [addEduc, setAddEduc] = useState([]);
     const [addExp, setAddExp] = useState([]);
     const [addAward, setAddAward] = useState([]);
@@ -21,7 +21,12 @@ export default function Info({buttonValue, initials, ContactInfo, EducationInfo,
             return <Awards addAward={addAward} setAddAward={setAddAward} awards={AwardsInfo[0]} setAwards={AwardsInfo[1]} initials={initials.awards}/>
         }
         else{
-            return <Template data={TemplateInfo}/>
+            return <Template data={{
+                "Contact":ContactInfo[0],
+                "Education":addEduc,
+                "Experience":addExp,
+                "Awards":addAward
+            }}/>
         }
   
 }

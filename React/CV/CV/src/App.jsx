@@ -2,7 +2,6 @@ import { useState } from 'react'
 import './App.css'
 import SideBar from './components/SideBar.jsx'
 import Info from './components/Info.jsx'
-// import Template from './components/Template.jsx'
 
 function App() {
   const [activeState, setActiveState] = useState("Contact");
@@ -43,15 +42,17 @@ const [awards, setAwards] = useState(initialAward);
 
 function handleClick(e){  
     e.preventDefault()
-    setActiveState(e.target.innerText)
+    const text = e.target.querySelector('.fas').nextSibling.textContent.trim();
+    setActiveState(text)
 }
 
   return (
     <div className='container'>
-      <div className="sideBar">
+      
         <SideBar handleClick={handleClick}/>
-      </div>
-      <div className="main"><Info
+     
+      <div className="main">
+        <Info
             buttonValue={activeState}
             initials = {{
               cont : initialContact,
