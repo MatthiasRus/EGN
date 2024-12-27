@@ -27,7 +27,6 @@ export default function Experience({addExp,setAddExp, initials, experience, setE
         };
 
         if (isEditing) {
-            
             const updatedExp = [...addExp];
             updatedExp[editingIndex] = newExp;
             setAddExp(updatedExp);
@@ -51,7 +50,6 @@ export default function Experience({addExp,setAddExp, initials, experience, setE
     }
 
     function handleEditing(index) {
-        
         const expToEdit = addExp[index];
         setExperience(expToEdit);
         setAddSection(true);
@@ -63,10 +61,10 @@ export default function Experience({addExp,setAddExp, initials, experience, setE
         return (
             <div className="collection">
                 <p className="company">{exp.companyName}</p>
-                <p className="position">{exp.positionTitle}</p>
-                <p className="responsibilities">{exp.responsibilities}</p>
-                <p className="dateFrom">{exp.dateFrom}</p>
-                <p className="dateUntil">{exp.dateUntil}</p>
+                <p className="position" style={{display:'none'}}>{exp.positionTitle}</p>
+                <p className="responsibilities" style={{display:'none'}}>{exp.responsibilities}</p>
+                <p className="dateFrom" style={{display:'none'}}>{exp.dateFrom}</p>
+                <p className="dateUntil" style={{display:'none'}}>{exp.dateUntil}</p>
                 <button className="editExp" onClick={() => handleEditing(index)}>
                     Edit
                 </button>
@@ -132,7 +130,6 @@ export default function Experience({addExp,setAddExp, initials, experience, setE
                                 onChange={handleChange}
                             />
                         </fieldset>
-
                         <button type="submit" onClick={handleSubmit}>
                             {isEditing ? "Update" : "Save"}
                         </button>

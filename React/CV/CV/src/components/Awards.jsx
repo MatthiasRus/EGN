@@ -2,19 +2,26 @@ import {useState} from 'react'
 
 export default function Awards({addAward, setAddAward,initials, awards, setAwards }) {
     const [addSection, setAddSection] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+    const [editingIndex, setEditingIndex] = useState(null);
 
     function toggle(){
         setAddSection(!addSection);
+        if (!addSection && isEditing){
+            setIsEditing(false);
+            setEditingIndex(null);
+            setAwards(initials)
+        }
     }
 
-    function AddAward({title,organization,date,description}){
+    function AddAward({award,index}){
         return (
             <div className="collection">
-                <p className="titleAward">{title}</p>
-                <p className="organization" style={{display:'none'}}>{organization}</p>
-                <p className="date" style={{display:'none'}}>{date}</p>
-                <p className="description" style={{display:'none'}}>{description}</p>
-                <button className='editAward'>Edit</button>
+                <p className="titleAward">{award.awardTitle}</p>
+                <p className="organization" style={{display:'none'}}>{award.organization}</p>
+                <p className="date" style={{display:'none'}}>{award.dateReceived}</p>
+                <p className="description" style={{display:'none'}}>{award.description}</p>
+                <button className='editAward' onClick={() => handleEdit(index)}>Edit</button>
             </div>
         )
     }
@@ -27,9 +34,18 @@ export default function Awards({addAward, setAddAward,initials, awards, setAward
             dateReceived : awards.dateReceived,
             description : awards.description
         }
-
-       setAddAward([...addAward,newAward])
+        if(isEditing){
+            const updatedAward = [...addAward];
+            updatedAward[editingIndex] = updatedAward;
+            setAddAward(updatedAward);
+        }
+        else{
+            setAddAward([...addAward,newAward])
+        }
+       
         setAddSection(!addSection);
+        setIsEditing(false)
+        setEditingIndex(null)
         setAwards(initials)
         
     }
@@ -41,16 +57,21 @@ export default function Awards({addAward, setAddAward,initials, awards, setAward
         });
     }
 
+    function handleEdit(index){
+        const awardUpdate = addAward[index]
+        setAwards(awardUpdate);
+        setAddSection(true);
+        setIsEditing(true);
+        setEditingIndex(index);
+    }
     return (
        <> <div className='sectionHolder'>
         {!addSection && <div className="awards">
             {addAward.map((award,index) => (
                 <AddAward 
                     key={index}
-                    title = {award.awardTitle}
-                    organization={award.organization}
-                    date = {award.dateReceived}
-                    description={award.description}
+                    index={index}
+                    award={award}
                 ></AddAward>
             ))}
         </div>}

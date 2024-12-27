@@ -2,10 +2,17 @@ import {useState} from 'react'
 
 export default function Education({addEduc,setAddEduc,initials, education, setEducation}){
     const [addSection, setAddSection] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+    const [editingIndex, setEditingIndex] = useState(null);
 
     function toggleSection(e){
         e.preventDefault();
         setAddSection(!addSection);
+        if (!addSection && isEditing){
+            setIsEditing(false);
+            setEditingIndex(null)
+            setEducation(initials)
+        }
     }
 
     function handleSubmit(e){
@@ -18,7 +25,15 @@ export default function Education({addEduc,setAddEduc,initials, education, setEd
 
         }
 
-        setAddEduc([...addEduc,newEduc]);
+        if (isEditing){
+            const updatedEduc = [...addEduc];
+            updatedEduc[editingIndex] = newEduc;
+            setAddEduc(updatedEduc)
+        }else{
+            setAddEduc([...addEduc,newEduc])
+        }
+        setIsEditing(false)
+        setEditingIndex(null)
         setAddSection(!addSection)
         setEducation(initials)
     }
@@ -29,15 +44,22 @@ export default function Education({addEduc,setAddEduc,initials, education, setEd
             [e.target.name] : e.target.value
         })
     }
+    function handleEdit(index){
+        const educToEdit = addEduc[index];
+        setEducation(educToEdit);
+        setAddSection(true);
+        setIsEditing(true);
+        setEditingIndex(index);
+    }
     
-    function AddEduc({school,field,dateFrom,dateUntil}){
+    function AddEduc({educ,index}){
         return(
             <div className="collection">
-                <p className="school">{school}</p>
-                <p className="field" style={{display:'none'}}>{field}</p>
-                <p className="dateFrom" style={{display:'none'}}>{dateFrom}</p>
-                <p className="dateUntil" style={{display:'none'}}>{dateUntil}</p>
-                <button className='editEduc'>Edit</button>
+                <p className="school">{educ.schoolName}</p>
+                <p className="field" style={{display:'none'}}>{educ.titleOfStudy}</p>
+                <p className="dateFrom" style={{display:'none'}}>{educ.dateFrom}</p>
+                <p className="dateUntil" style={{display:'none'}}>{educ.dateUntil}</p>
+                <button onClick={() => handleEdit(index)} className='editEduc'>Edit</button>
             </div>
         )
     }
@@ -47,10 +69,8 @@ export default function Education({addEduc,setAddEduc,initials, education, setEd
             {!addSection && addEduc.map((educ,index) => (
                 <AddEduc
                 key={index}
-                school={educ.schoolName}
-                field={educ.titleOfStudy}
-                dateFrom={educ.dateFrom}
-                dateUntil={educ.dateUntil}
+                educ={educ}
+                index={index}
                 />
             ))}
         {addSection && <form >
