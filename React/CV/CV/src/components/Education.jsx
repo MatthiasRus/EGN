@@ -51,7 +51,10 @@ export default function Education({addEduc,setAddEduc,initials, education, setEd
         setIsEditing(true);
         setEditingIndex(index);
     }
-    
+    function handleDelete(index){
+        const updatedEduc = addEduc.filter((_,i) => i !== index);
+        setAddEduc(updatedEduc);
+    }
     function AddEduc({educ,index}){
         return(
             <div className="collection">
@@ -59,7 +62,13 @@ export default function Education({addEduc,setAddEduc,initials, education, setEd
                 <p className="field" style={{display:'none'}}>{educ.titleOfStudy}</p>
                 <p className="dateFrom" style={{display:'none'}}>{educ.dateFrom}</p>
                 <p className="dateUntil" style={{display:'none'}}>{educ.dateUntil}</p>
-                <button onClick={() => handleEdit(index)} className='edit'>Edit</button>
+                <button onClick={() => handleEdit(index)} className="edit">
+    <i className="fas fa-edit"></i>
+</button>
+<button onClick={() => handleDelete(index)} className="delete">
+    <i className="fas fa-trash"></i>
+</button>
+
             </div>
         )
     }

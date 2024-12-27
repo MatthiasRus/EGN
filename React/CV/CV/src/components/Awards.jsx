@@ -13,7 +13,10 @@ export default function Awards({addAward, setAddAward,initials, awards, setAward
             setAwards(initials)
         }
     }
-
+    function handleDelete(index){
+        const updatedAward = addAward.filter((_,i) => i!==index);
+        setAddAward(updatedAward)
+    }
     function AddAward({award,index}){
         return (
             <div className="collection">
@@ -21,14 +24,20 @@ export default function Awards({addAward, setAddAward,initials, awards, setAward
                 <p className="organization" style={{display:'none'}}>{award.organization}</p>
                 <p className="date" style={{display:'none'}}>{award.dateReceived}</p>
                 <p className="description" style={{display:'none'}}>{award.description}</p>
-                <button className='edit' onClick={() => handleEdit(index)}>Edit</button>
+                <button onClick={() => handleEdit(index)} className="edit">
+                        <i className="fas fa-edit"></i>
+                </button>
+                <button onClick={() => handleDelete(index)} className="delete">
+                         <i className="fas fa-trash"></i>
+                </button>
+
             </div>
         )
     }
 
     function handleSubmit(e) {
         e.preventDefault();
-        let newAward = {
+        const newAward = {
             awardTitle : awards.awardTitle,
             organization : awards.organization,
             dateReceived : awards.dateReceived,
@@ -36,14 +45,14 @@ export default function Awards({addAward, setAddAward,initials, awards, setAward
         }
         if(isEditing){
             const updatedAward = [...addAward];
-            updatedAward[editingIndex] = updatedAward;
+            updatedAward[editingIndex] = newAward;
             setAddAward(updatedAward);
         }
         else{
             setAddAward([...addAward,newAward])
         }
        
-        setAddSection(!addSection);
+        setAddSection(false);
         setIsEditing(false)
         setEditingIndex(null)
         setAwards(initials)
@@ -66,15 +75,15 @@ export default function Awards({addAward, setAddAward,initials, awards, setAward
     }
     return (
        <> <div className='sectionHolder'>
-        {!addSection && <div className="awards">
-            {addAward.map((award,index) => (
+        {!addSection && 
+            addAward.map((award,index) => (
                 <AddAward 
                     key={index}
                     index={index}
                     award={award}
                 ></AddAward>
             ))}
-        </div>}
+        
             
             {addSection && <form >
                 <fieldset>
@@ -121,7 +130,7 @@ export default function Awards({addAward, setAddAward,initials, awards, setAward
                 <button type="submit" onClick={handleSubmit}>Save</button>
             </form>}
         </div>
-        <button onClick={toggle} className='add'>Add Award</button>
+        <button onClick={toggle} className='add'>{addSection? "Close" : "Add Award"}</button>
         </>
     );
 }

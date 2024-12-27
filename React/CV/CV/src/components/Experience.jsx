@@ -56,6 +56,11 @@ export default function Experience({addExp,setAddExp, initials, experience, setE
         setIsEditing(true);
         setEditingIndex(index);
     }
+    function handleDeleting(index){
+        const updatedExp = addExp.filter((_, i) => i !== index);
+        setAddExp(updatedExp);
+
+    }
 
     function AddExp({ exp, index }) {
         return (
@@ -65,9 +70,13 @@ export default function Experience({addExp,setAddExp, initials, experience, setE
                 <p className="responsibilities" style={{display:'none'}}>{exp.responsibilities}</p>
                 <p className="dateFrom" style={{display:'none'}}>{exp.dateFrom}</p>
                 <p className="dateUntil" style={{display:'none'}}>{exp.dateUntil}</p>
-                <button className="edit" onClick={() => handleEditing(index)}>
-                    Edit
-                </button>
+                <button onClick={() => handleEditing(index)} className="edit">
+    <i className="fas fa-edit"></i>
+</button>
+<button onClick={() => handleDeleting(index)} className="delete">
+    <i className="fas fa-trash"></i>
+</button>
+
             </div>
         );
     }
@@ -103,7 +112,7 @@ export default function Experience({addExp,setAddExp, initials, experience, setE
                                 onChange={handleChange}
                             />
 
-                            <label htmlFor="responsibilities">Main Responsibilities:</label>
+                            <label htmlFor="responsibilities">Skills:</label>
                             <textarea
                                 id="responsibilities"
                                 name="responsibilities"
