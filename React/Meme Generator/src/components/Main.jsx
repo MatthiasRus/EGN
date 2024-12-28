@@ -7,7 +7,7 @@ export default function Main() {
         bottomText: "Walk into Mordor",
         imageUrl: "http://i.imgflip.com/1bij.jpg"
     })
-    const [count, setCount] = useState(0);
+    
     const [allMemes, setAllMemes] = useState([memeContent.imageUrl]);
 
     function handleChange(e){
@@ -21,14 +21,18 @@ export default function Main() {
     useEffect(() =>{
         fetch("https://api.imgflip.com/get_memes")
         .then(res => res.json())
-        .then(data =>setAllMemes((prev) => ([prev,...data.data.memes.map(meme => meme.url)])))
-
+        .then(data =>setAllMemes(data.data.memes))
+        }
+    ,[])
+    
+    function getNewMemeImage(){
+        const randomNum = Math.floor(Math.random() * allMemes.length);
             setMemeContent(prevMeme => ({
                 ...prevMeme,
-                imageUrl : allMemes[count]
-        }))}
-    ,[count])
-    
+                imageUrl : allMemes[randomNum].url
+    }))}
+
+
     return (
         <main>
             <div className="form">
@@ -51,7 +55,7 @@ export default function Main() {
                         value={memeContent.bottomText}
                     />
                 </label>
-                <button onClick={() => setCount(prevCount => (prevCount + 1))}>Get a new meme image 🖼</button>
+                <button onClick={getNewMemeImage}>Get a new meme image 🖼</button>
             </div>
             <div className="meme">
                 <img src= {memeContent.imageUrl}/>
