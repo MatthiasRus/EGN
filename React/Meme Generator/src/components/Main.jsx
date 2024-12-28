@@ -7,7 +7,9 @@ export default function Main() {
         bottomText: "Walk into Mordor",
         imageUrl: "http://i.imgflip.com/1bij.jpg"
     })
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(0);
+    const [allMemes, setAllMemes] = useState([memeContent.imageUrl]);
+
     function handleChange(e){
         const {value, name} = e.currentTarget
         setMemeContent(memeContent => ({
@@ -19,11 +21,13 @@ export default function Main() {
     useEffect(() =>{
         fetch("https://api.imgflip.com/get_memes")
         .then(res => res.json())
-        .then(data => setMemeContent(prevMeme => ({
+        .then(data =>setAllMemes((prev) => ([prev,...data.data.memes.map(meme => meme.url)])))
+
+            setMemeContent(prevMeme => ({
                 ...prevMeme,
-                imageUrl : data["data"]["memes"][count]["url"]
-        })))
-    },[count])
+                imageUrl : allMemes[count]
+        }))}
+    ,[count])
     
     return (
         <main>
