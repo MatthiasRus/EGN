@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 export default function Main() {
 
@@ -7,13 +7,24 @@ export default function Main() {
         bottomText: "Walk into Mordor",
         imageUrl: "http://i.imgflip.com/1bij.jpg"
     })
+    const [count, setCount] = useState(0)
     function handleChange(e){
-        setMemeContent({
+        const {value, name} = e.currentTarget
+        setMemeContent(memeContent => ({
             ...memeContent,
-            topText:(e.target.name === "topText" ? e.target.value:memeContent.topText),
-            bottomText:(e.target.name === "bottomText" ? e.target.value:memeContent.bottomText)
-        })
+            [name] : value,
+        }))
     }
+
+    useEffect(() =>{
+        fetch("https://api.imgflip.com/get_memes")
+        .then(res => res.json())
+        .then(data => setMemeContent(prevMeme => ({
+                ...prevMeme,
+                imageUrl : data["data"]["memes"][count]["url"]
+        })))
+    },[count])
+    
     return (
         <main>
             <div className="form">
@@ -22,6 +33,7 @@ export default function Main() {
                         type="text"
                         placeholder="One does not simply"
                         name="topText"
+                        value={memeContent.topText}
                         onChange={handleChange}
                     />
                 </label>
@@ -32,9 +44,10 @@ export default function Main() {
                         placeholder="Walk into Mordor"
                         name="bottomText"
                         onChange={handleChange}
+                        value={memeContent.bottomText}
                     />
                 </label>
-                <button>Get a new meme image 🖼</button>
+                <button onClick={() => setCount(prevCount => (prevCount + 1))}>Get a new meme image 🖼</button>
             </div>
             <div className="meme">
                 <img src= {memeContent.imageUrl}/>
