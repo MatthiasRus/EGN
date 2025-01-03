@@ -1,7 +1,6 @@
 import fetchPokemon from "../PokemonAPI";
 import { useEffect, useState } from "react";
-export default function useCards(ids) {
-    const [pokemonData, setPokemonData] = useState([]);
+export default function useCards(ids,pokemonData,setPokemonData) {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
   
@@ -17,8 +16,7 @@ export default function useCards(ids) {
           );
           setPokemonData(data); 
         } catch (error) {
-          console.error("Error fetching Pokémon data:", error);
-          setError("Failed to fetch data.");
+          setError("Retry");
         } finally {
           setIsLoading(false);
         }

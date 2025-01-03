@@ -6,6 +6,7 @@ import './App.css'
 
 function App() {
  const [isStarted, setIsStarted] = useState(false);
+ const [pokemonData, setPokemonData] = useState([]);
  const [randomValues, setRandomValues] = useState([]);
  const [gameLevel, setGameLevel] = useState(8);
  const [correctCount, setCorrectCount] = useState(0);
@@ -23,7 +24,7 @@ useEffect(()=>{
     const random = [];
 
     while (random.length < gameLevel){
-      const randomNum = Math.floor(Math.random() * 50);
+      const randomNum = Math.floor(Math.random() * 30);
       !random.includes(randomNum) && random.push(randomNum)
     }
   return random;
@@ -40,11 +41,15 @@ setRandomValues(randomIds())
     {
       isStarted && 
       <>
-       <Score score={correctCount} setScore={setCorrectCount}/>
-       <PokemonComponent ids={randomValues}/>
+       <Score score={correctCount}/>
+       <PokemonComponent 
+       ids={randomValues} 
+       data={pokemonData} 
+       setData={setPokemonData}
+       setScore={setCorrectCount}
+       level = {gameLevel}
+       />
       </>
-           
-      
     }
         <button onClick={() => startGame()}>{isStarted ? "Close Game" : "Start Game"}</button>
         {
