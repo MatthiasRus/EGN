@@ -16,7 +16,7 @@ export default function useCards(ids,pokemonData,setPokemonData) {
           );
           setPokemonData(data); 
         } catch (error) {
-          setError("Retry");
+          setError((error ||"Retry please!" ));
         } finally {
           setIsLoading(false);
         }

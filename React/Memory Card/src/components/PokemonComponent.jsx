@@ -6,7 +6,13 @@ export default function PokemonComponent({ ids, data, setData, setScore, level})
   const [isGameOver, setIsGameOver] = useState(false);
   const [isWin, setIsWin] = useState(false);
   const [selected, setSelected] =  useState([])
-
+  function shuffleArray(array){
+    for (let i = array.length - 1; i>0; i--){
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
   function handleClick(name) {
     if (selected.includes(name)) {
       setIsGameOver(!isGameOver); 
@@ -20,6 +26,7 @@ export default function PokemonComponent({ ids, data, setData, setScore, level})
     } else {
       setSelected((prev) => [...prev, name]); 
       setScore(score => (++score))
+      shuffleArray(pokemonData)
     }
 
     

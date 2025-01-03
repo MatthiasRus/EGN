@@ -52,7 +52,7 @@ setRandomValues(randomIds())
        />
       </>
     }
-        <button onClick={() => startGame()}>{isStarted ? "Close Game" : "Start Game"}</button>
+        <button onClick={() => startGame()}>{isStarted ? "Reset Game" : "Start Game"}</button>
         {
           !isStarted && <>
           <button className="easy" value={8} name='easy' onClick={handleGameLevel}>Easy</button>
