@@ -1,24 +1,37 @@
 import PokemonComponent from './components/PokemonComponent'
 import Menu from './components/Menu'
 import Score from './components/Score'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
  const [isStarted, setIsStarted] = useState(false);
- const [randomValues, setRandomValues] = useState([])
+ const [randomValues, setRandomValues] = useState([]);
+ const [gameLevel, setGameLevel] = useState(8);
+ const [correctCount, setCorrectCount] = useState(0);
+
  function startGame(){
   setIsStarted(!isStarted)
  }
 
- function randomIds(){
-  for (let i ; i< 30; i++){
-    const randomNum = Math.floor(Math.random() * 50);
-  randomValues.includes(randomNum) ? randomValues : setRandomValues([...randomValues, randomNum])
-  }
-  
-  return randomValues;
+ function handleGameLevel(e){
+  const {value} = e.target;
+  setGameLevel(Number(value));
  }
+useEffect(()=>{
+  function randomIds(){
+    const random = [];
+
+    while (random.length < gameLevel){
+      const randomNum = Math.floor(Math.random() * 50);
+      !random.includes(randomNum) && random.push(randomNum)
+    }
+  return random;
+ }
+
+setRandomValues(randomIds())
+},[gameLevel])
+ 
   return (
     <>
     <div className="main">
@@ -27,15 +40,22 @@ function App() {
     {
       isStarted && 
       <>
-       <Score/>
-       <PokemonComponent ids={randomIds()}/>
+       <Score score={correctCount} setScore={setCorrectCount}/>
+       <PokemonComponent ids={randomValues}/>
       </>
            
       
     }
         <button onClick={() => startGame()}>{isStarted ? "Close Game" : "Start Game"}</button>
-
+        {
+          !isStarted && <>
+          <button className="easy" value={8} name='easy' onClick={handleGameLevel}>Easy</button>
+        <button className="medium" value={12} name='medium' onClick={handleGameLevel}>Medium</button>
+        <button className="hard" value={16} name='hard' onClick={handleGameLevel}>Hard</button></>
+}
     </div>
+   
+    
     </>
   )
 }

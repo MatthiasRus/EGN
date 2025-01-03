@@ -1,5 +1,9 @@
-export default function Score() {
+export default function Score({score, setScore}) {
+
+  function 
   return (
-    <div className="score">Score</div>
+    <div className="score">
+      <h1>Score : {score}</h1>
+      </div>
   )
 }
