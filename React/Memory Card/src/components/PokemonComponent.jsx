@@ -26,7 +26,7 @@ export default function PokemonComponent({ ids, data, setData, setScore, level})
     } else {
       setSelected((prev) => [...prev, name]); 
       setScore(score => (++score))
-      shuffleArray(pokemonData)
+      // shuffleArray(pokemonData)
     }
 
     
