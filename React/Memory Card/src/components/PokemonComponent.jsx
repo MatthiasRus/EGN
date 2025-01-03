@@ -13,15 +13,16 @@ export default function PokemonComponent({ ids, data, setData, setScore, level})
       setSelected([])
     } else if (selected.length + 1 === level) {
       setSelected([]);
+      setScore(score => (++score))
       setIsWin(true); 
 
       
     } else {
       setSelected((prev) => [...prev, name]); 
-      
+      setScore(score => (++score))
     }
 
-    setScore(selected.length)
+    
   }
 
   if (isLoading) return <p className="text-center text-xl">Loading...</p>;

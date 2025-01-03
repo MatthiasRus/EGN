@@ -12,6 +12,7 @@ function App() {
  const [correctCount, setCorrectCount] = useState(0);
 
  function startGame(){
+  setCorrectCount(0);
   setIsStarted(!isStarted)
  }
 
