@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useCards from "./Cards";
+import Confetti from 'react-confetti'
 
 export default function PokemonComponent({ ids, data, setData, setScore, level}) {
   const { pokemonData, isLoading, error } = useCards(ids, data, setData);
@@ -21,7 +22,6 @@ export default function PokemonComponent({ ids, data, setData, setScore, level})
       setSelected([]);
       setScore(score => (++score))
       setIsWin(true); 
-
       
     } else {
       setSelected((prev) => [...prev, name]); 
@@ -37,8 +37,16 @@ export default function PokemonComponent({ ids, data, setData, setScore, level})
   if (error) return <p className="text-red-500 text-center text-xl">{error}</p>;
 
   if (isGameOver) return <p className="text-center text-xl text-red-500">Game Over! Try again.</p>;
-  if (isWin) return <p className="text-center text-xl text-green-500">You Win! Congratulations!</p>;
-
+  if (isWin) {
+    return(
+      <>
+      <Confetti/>
+       <p className="text-center text-xl text-green-500">You Win! Congratulations!</p>;
+      </>
+    )
+  }
+     
+ 
   return (
     <div className="cards">
       {!isGameOver ? pokemonData.map((data) => (
