@@ -61,61 +61,60 @@ export default function PokemonComponent({ ids, data, setData, setScore, level})
   
   if (error) {
     return (
-      <>
+    <>
       <p className="text-red-500 text-center text-xl" style = {{color:"white"}}>
-        {error.message} Please refresh or try again later.</p>
-        <br></br><div style={{ display: "inline-block", textAlign: "center" }}>
-  <i 
-    onClick={() => window.location.reload()} 
-    className="fa fa-sync fa-spin" 
-    style={{ fontSize: "48px", color: "#61dafb", cursor: "pointer", margin: "10px" }}
-  ></i>
-</div>
-      </>
+        {error.message} Please refresh or try again later.
+      </p>
+        
+        <div style={{ display: "inline-block", textAlign: "center" }}>
+            <i 
+              onClick={() => window.location.reload()} 
+              className="fa fa-sync fa-spin" 
+              style={{ fontSize: "48px", color: "#61dafb", cursor: "pointer", margin: "10px" }}
+            >
+            </i>
+      </div>
+    </>
       
 
     );
   }
   if (isGameOver && !isWin) return (
-    <>
+  <>
      <div className="lose-message">
           <h2>You Lost!</h2>
           <p>Better luck next time!</p>
           <div className="sad-face">😢</div>
-        </div>
- <p className="text-center text-xl " style = {{color:"white"}}>Game Over! Try again.</p>
- <br></br>
- <div style={{ display: "inline-block", textAlign: "center" }}>
-  <i 
-    onClick={() => window.location.reload()} 
-    className="fa fa-sync fa-spin" 
-    style={{ fontSize: "48px", color: "#61dafb", cursor: "pointer", margin: "10px" }}
-  ></i>
-</div>
-
-
-    </>
+      </div>
+    <p className="text-center text-xl " style = {{color:"white"}}>Game Over! Try again.</p>
+    <div style={{ display: "inline-block", textAlign: "center" }}>
+      <i 
+        onClick={() => window.location.reload()} 
+        className="fa fa-sync fa-spin" 
+        style={{ fontSize: "48px", color: "#61dafb", cursor: "pointer", margin: "10px" }}
+      ></i>
+    </div>
+  </>
  
 );
 
   if (isGameOver) {
     return(
-      <>
+    <>
       <Confetti
-  numberOfPieces={1000}
-  gravity={0.3}
-  colors={['green', 'red', "yellow"]}
-/>
+          numberOfPieces={1000}
+          gravity={0.3}
+          colors={['green', 'red', "yellow"]}
+      />
 
        <p className="text-center text-xl" style={{color:"white"}}>You Win! Congratulations!</p>
-       <br />
        <div style={{ display: "inline-block", textAlign: "center" }}>
-  <i 
-    onClick={() => window.location.reload()} 
-    className="fa fa-sync fa-spin" 
-    style={{ fontSize: "48px", color: "#61dafb", cursor: "pointer", margin: "10px" }}
-  ></i>
-</div>
+            <i 
+              onClick={() => window.location.reload()} 
+              className="fa fa-sync fa-spin" 
+              style={{ fontSize: "48px", color: "#61dafb", cursor: "pointer", margin: "10px" }}
+            ></i>
+      </div>
       </>
     )
   }
@@ -123,12 +122,12 @@ export default function PokemonComponent({ ids, data, setData, setScore, level})
 
   return (
     <div className="cards">
-      {!isGameOver &&  pokemonData.map((data) => (
-        <button className="card" key={data.id} name={data.name} onClick={() =>handleClick(data.name)}>
-          <img src={data.sprites.front_default} alt={data.name} />
-          <p className="card-title">{data.name}</p>
-        </button>
-      ))}
+          {!isGameOver &&  pokemonData.map((data) => (
+            <button className="card" key={data.id} name={data.name} onClick={() =>handleClick(data.name)}>
+              <img src={data.sprites.front_default} alt={data.name} />
+              <p className="card-title">{data.name}</p>
+            </button>
+          ))}
     </div>
   );
 }

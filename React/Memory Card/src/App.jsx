@@ -13,22 +13,24 @@ function App() {
  const [isModalOpen, setIsModalOpen] = useState(false);
 
  function startGame(){
-  setCorrectCount(0);
-  setIsStarted(!isStarted);
-  setIsModalOpen(true)
+      setCorrectCount(0);
+      setIsStarted(!isStarted);
+      setIsModalOpen(true)
  }
  function Modal({children, isOpen, onClose}){
   if (!isOpen) return null;
-  return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        {children}
-        <button onClick={onClose} className="close-button">Close</button>
-        <button onClick={() => window.location.reload()} className="reset-button">Reset</button>
+
+    return (
+      <div className="modal-overlay">
+        <div className="modal-content">
+          {children}
+          <button onClick={onClose} className="close-button">Close</button>
+          <button onClick={() => window.location.reload()} className="reset-button">Reset</button>
+        </div>
       </div>
-    </div>
   );
  }
+
  function handleGameLevel(event) {
   const level = parseInt(event.target.value, 10);
   setGameLevel(level);
@@ -43,7 +45,7 @@ useEffect(()=>{
       const randomNum = Math.floor(Math.random() * 22);
       !random.includes(randomNum) && random.push(randomNum)
     }
-  return random;
+    return random;
  }
 
 setRandomValues(randomIds())
@@ -83,8 +85,6 @@ setRandomValues(randomIds())
         </Modal>
 }
     </div>
-   
-    
     </>
   )
 }
