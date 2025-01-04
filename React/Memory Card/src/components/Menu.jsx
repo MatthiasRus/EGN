@@ -1,5 +1,8 @@
-export default function Menu() {
+export default function Menu({setIsModalOpen}) {
+  function handleClick(){
+    setIsModalOpen(true)
+  }
   return (
-    <div className="menu text-center"><i className="fa fa-bars" style={{fontSize:"30px"}}></i></div>
+    <button className="menu text-center" onClick={handleClick}><i className="fa fa-bars" style={{fontSize:"30px"}}></i></button>
   )
 }
