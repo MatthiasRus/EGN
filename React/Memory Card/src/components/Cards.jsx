@@ -23,8 +23,7 @@ export default function useCards(ids, pokemonData, setPokemonData) {
         setPokemonData(data);
         setIsLoading(false);
       } catch (err) {
-        
-
+        retryCount++;
         if (retryCount <= maxRetries) {
          
           setTimeout(() => {

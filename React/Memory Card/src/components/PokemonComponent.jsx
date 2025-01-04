@@ -61,17 +61,19 @@ export default function PokemonComponent({ ids, data, setData, setScore, level})
   
   if (error) {
     return (
+      <>
       <p className="text-red-500 text-center text-xl" style = {{color:"white"}}>
-        {error.message} Please refresh or try again later.
-        <br></br>
-        <button onClick={() => window.location.reload()}><div style={{ display: "inline-block", textAlign: "center" }}>
+        {error.message} Please refresh or try again later.</p>
+        <br></br><div style={{ display: "inline-block", textAlign: "center" }}>
   <i 
     onClick={() => window.location.reload()} 
     className="fa fa-sync fa-spin" 
     style={{ fontSize: "48px", color: "#61dafb", cursor: "pointer", margin: "10px" }}
   ></i>
-</div></button>
-      </p>
+</div>
+      </>
+      
+
     );
   }
   if (isGameOver && !isWin) return (
@@ -105,7 +107,7 @@ export default function PokemonComponent({ ids, data, setData, setScore, level})
   colors={['green', 'red', "yellow"]}
 />
 
-       <p className="text-center text-xl" style={{color:"white"}}>You Win! Congratulations!</p>;
+       <p className="text-center text-xl" style={{color:"white"}}>You Win! Congratulations!</p>
        <br />
        <div style={{ display: "inline-block", textAlign: "center" }}>
   <i 
