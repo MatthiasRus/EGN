@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+
 export default function VanDefault() {
     const params = useParams();
     const [van, setVan] = useState()
@@ -8,7 +9,6 @@ export default function VanDefault() {
        ( async function(){
                 const response = await fetch(`/api/vans/${params.id}`);
                 const data = await response.json();
-                console.log(data)
                 setVan(data.vans)
         })();
     },[params.id])

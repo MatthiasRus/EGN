@@ -4,26 +4,10 @@ import Home from './components/Home.jsx'
 import About from './components/About.jsx'
 import './Server.js'
 import Vans from './components/Vans.jsx'
-import VanDefault from './components/vanDefault.jsx'
+import VanDetail from './components/vanDetail.jsx'
 
 function App() {
 
-  // const router = [
-  //   {
-  //     path : '/',
-  //     element : <App/>
-  //   },
-
-  //   {
-  //     path : '/about',
-  //     element : <About/>
-  //   },
-
-  //   {
-  //     path : '/vans',
-  //     element : <Vans/>
-  //   }
-  // ]
   return (
     <BrowserRouter>
       <header>
@@ -37,7 +21,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path='/vans' element={<Vans/>}/>
         <Route path="/about" element={<About />} />
-        <Route path="/vans/:id" element={<VanDefault/>}/>
+        <Route path="/vans/:id" element={<VanDetail/>}/>
       </Routes>
     </BrowserRouter>
   )
