@@ -3,13 +3,12 @@ import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import './Server.js'
-import Vans from './pages/Vans.jsx'
-import VanDetail from './pages/vanDetail.jsx'
+import Vans from './pages/vans/Vans.jsx'
+import VanDetail from './pages/vans/vanDetail.jsx'
 import Layout from './components/layout.jsx'
-import Host from './pages/Host.jsx'
-import Reviews from "./pages/host/Reviews"
 import Dashboard from "./pages/host/Dashboard"
-import Income from "./pages/host/Income"
+import Income from './pages/host/Income.jsx'
+import Reviews from './pages/host/Reviews.jsx'
 function App() {
 
   return (
@@ -20,9 +19,10 @@ function App() {
               <Route path='/vans' element={<Vans/>}/>
               <Route path="/about" element={<About />} />
               <Route path="/vans/:id" element={<VanDetail/>}/>
-              <Route path='/host' element={<Dashboard/>}/>
-              <Route path='/host/income' element={<Income/>}/>
-              <Route path='/host/reviews' element={<Reviews/>}/>
+              <Route path='/host' element={<Dashboard/>}>
+                <Route path='/host/income' element={<Income/>}/>
+                <Route path='/host/reviews' element={<Reviews/>}/>
+              </Route>
         </Route>
       </Routes>
     </BrowserRouter>
