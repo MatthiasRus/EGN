@@ -14,7 +14,6 @@ export default function Vans() {
     }, [])
 
     const vansElement = vansData.map(van => (
-        
         <div key={van.id} className="van-tile">
             <Link key={van.id} to={`/vans/${van.id}`}
         aria-label={`View details for ${van.name}, 
