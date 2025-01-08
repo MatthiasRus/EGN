@@ -1,20 +1,8 @@
-import { useEffect, useState } from "react";
-import {  useParams } from "react-router-dom"
+import {  useOutletContext } from "react-router-dom"
 
 export default function HostVansPhotos() {
     
-    const params = useParams();
-    const [vans, setVans] = useState();
-    useEffect(() => {
-        async function fetchVanDetail(){
-            const response = await fetch(`/api/host/vans/${params.id}`);
-            const data = await response.json();
-            setVans(data.vans[0])
-            
-        }
-        fetchVanDetail();
-    },[params.id]);
-   
+const {vans} = useOutletContext()
   return (
       vans ?  ( 
            

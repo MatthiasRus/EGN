@@ -31,7 +31,7 @@ function App() {
                     <Route path='income' element={<Income/>}/>
                     <Route path='vans' element={<HostVans/>}/>
                     <Route path='vans/:id' element={<HostVansLayout/>}>
-                        <Route path='details' element={<HostVansDetail/>}/>
+                        <Route index element={<HostVansDetail/>}/>
                         <Route path='pricing' element={<HostVansPricing/>}/>
                         <Route path='photos' element={<HostVansPhotos/>}/>
                     </Route>

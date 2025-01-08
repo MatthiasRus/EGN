@@ -14,14 +14,19 @@ export default function HostVansLayout() {
         }
         fetchVanDetail();
     },[params.id]);
-    const activeStyle = { fontWeight : "bold",
-        textDecoration : "underlined",
+    const activeStyles = { 
+        fontWeight : "bold",
+        textDecoration : "underline",
         color : "#161616"}
   return (
 <>
 {      vans ? ( 
      <div className="host-van-details">
-            <Link to={'/host/vans'} className="back-link">back to all vans</Link>
+            <Link 
+            // to={'../vans'} // we can do this 
+                to={'..'}
+                relative="path"
+                className="back-link"> &larr; back to all vans</Link>
             <div className="upper">
                 <div className="upper-top">
                     <img src={vans.imageUrl} alt={`Image of ${vans.name}`}  />
@@ -34,17 +39,17 @@ export default function HostVansLayout() {
                 
                 <div className="links">
                 <NavLink
-                    to={`details`}
+                    to={`.`}
                     end
-                    style={({isActive}) => isActive? activeStyle : null}
+                    style={({isActive}) => isActive ? activeStyles : null}
                 >Details</NavLink>
                 <NavLink
                 to={`pricing`}
-                style={({isActive}) => isActive? activeStyle : null}
+                style={({isActive}) => isActive ? activeStyles : null}
                 >Pricing</NavLink>
                 <NavLink
                 to={`photos`}
-                style={({isActive}) => isActive? activeStyle : null}
+                style={({isActive}) => isActive ? activeStyles : null}
                 >Photos</NavLink>
             </div>
             </div>
@@ -58,7 +63,7 @@ export default function HostVansLayout() {
 <p>Loading...</p>
 </>
 }
-<Outlet/>
+<Outlet context={{vans}}/>
 </>
   )
 }
