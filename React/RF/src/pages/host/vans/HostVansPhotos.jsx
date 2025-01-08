@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {  useParams } from "react-router-dom"
 
-export default function HostVansDetail() {
+export default function HostVansPhotos() {
     
     const params = useParams();
     const [vans, setVans] = useState();
@@ -14,16 +14,13 @@ export default function HostVansDetail() {
         }
         fetchVanDetail();
     },[params.id]);
-   console.log(params)
+   
   return (
-      vans ?  (            
+      vans ?  ( 
+           
             <section className="details">
-                <p>Name: <span>{vans.name}</span></p>
-                <p>Category: <span>{vans.type}</span></p>
-                <p>Description: <span>{vans.description}</span></p>
-                <p>Visibility: <span>Public</span></p>
-
+                <h1>Here the image will go</h1>
             </section>
-      ) : <p>Loading...</p>
+       ) : <p>Loading...</p>
   )
 }
