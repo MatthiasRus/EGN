@@ -412,3 +412,8 @@ p span{
 .back-link {
     margin: 30px 0;
 }
+
+.selected{
+    background-color: white;
+    transform: scale(1.5);
+}
