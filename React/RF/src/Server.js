@@ -77,11 +77,12 @@ createServer({
   routes() {
     this.namespace = "api";
     this.logging = false;
-
+    this.timing = 2000;
     this.get("/vans", (schema, request) => {
       return schema.vans.all();
     });
 
+  
     this.get("/vans/:id", (schema, request) => {
       const id = request.params.id;
       return schema.vans.find(id);

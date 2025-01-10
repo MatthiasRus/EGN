@@ -4,12 +4,12 @@ export default function HostVans() {
   const [hostVans, setHostVans] = useState([])
 
   useEffect(() => {
-    async function fetchVans(){
+    (async function fetchVans(){
       const response = await fetch('/api/host/vans');
       const data = await response.json();
       setHostVans(data.vans);
-    }
-    fetchVans();
+    })()
+    
   },[]);
 
   const hostVansElement = hostVans.map(van => (

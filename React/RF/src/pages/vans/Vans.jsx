@@ -1,25 +1,38 @@
 import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { getData } from "../../api";
 
 export default function Vans() {
     const [vansData, setVansData] = React.useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
+    const [loading, setLoading] = React.useState(false);
+    const [error, setError] = React.useState(null);
+
     const typeFilter = searchParams.get("type");
 
     React.useEffect(() => {
-        async function fetchData() {
-            const response = await fetch("api/vans");
-            const data = await response.json();
-            setVansData(data.vans);
+        async function getVans(){
+            setLoading(true)
+            try{
+                const data = await getData();
+                setVansData(data);
+        }catch(err){
+            
+    console.log(err)
+            setError(err)
+        }finally{
+            setLoading(false)
+        } 
         }
-        fetchData();
-    }, []);
+
+        getVans()
+    }, []); 
 
     const filteredElement = typeFilter
         ? vansData.filter(van => van.type === typeFilter)
         : vansData;
-
-    const vansElement = filteredElement.map(van => (
+        
+    const vansElement = filteredElement?.map(van => (
         <div key={van.id} className="van-tile">
             <Link
                 to={van.id}
@@ -51,7 +64,13 @@ export default function Vans() {
             return prevParams;
         });
     }
+    if(loading) {
+        return <h1>Loading...</h1>
+    }
 
+    if(error){
+        return <h1>There was an error {error.message}</h1>
+    }
     return (
         <div className="van-list-container">
             <h1>Explore our van options</h1>
