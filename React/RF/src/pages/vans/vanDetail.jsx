@@ -5,7 +5,6 @@ export default function VanDetail() {
     const params = useParams();
     const [van, setVan] = useState();
     const location = useLocation();
-    console.log(location)
 
     useEffect(() => {
        ( async function(){
@@ -20,7 +19,7 @@ export default function VanDetail() {
       <Link
         to={`..${search}`}
         relative="path"
-      >&larr; back to all vans</Link>
+      >&larr; back to {location.state.type || 'all'} vans</Link>
     {van ? (
         <div className="van-detail">
             <img src={van.imageUrl} />
