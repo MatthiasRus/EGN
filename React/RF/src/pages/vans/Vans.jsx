@@ -31,22 +31,32 @@ export default function Vans() {
     </div>
     
 ))
-
+function handleFiltersChange(key, value){
+    setSearchParams(prevParams => 
+   {
+     if (value === null){
+        prevParams.delete(key)
+   }else{
+    prevParams.set(key,value)
+   }
+   return prevParams
+    })
+}
 
   return (
 
     <div className="van-list-container">
         <h1>Explore our van options</h1>
-        <button onClick={() => setSearchParams({type: "simple"})}
+        <button onClick={() => handleFiltersChange("type", "simple")}
         >Simple</button>
         <button
-        onClick={() => setSearchParams({type: "luxury"})}
+        onClick={() => handleFiltersChange("type", "luxury")}
         >Luxury</button>
         <button
-        onClick={() => setSearchParams({type: "rugged"})}
+        onClick={() => handleFiltersChange("type", "rugged")}
         >Rugged</button>
         <button
-        onClick={() => setSearchParams("")}
+        onClick={() => handleFiltersChange("type",null)}
         >Clear Filter</button>
             <div className="van-list">
                 {vansElement}
