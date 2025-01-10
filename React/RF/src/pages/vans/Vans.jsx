@@ -37,11 +37,17 @@ export default function Vans() {
 
     <div className="van-list-container">
         <h1>Explore our van options</h1>
-        {vanTypes.map(van => (
-            <button key={van.id}
-                onClick={() => setSearchParams({type : van.type})}
-            >{van.type}</button>
-        ))}
+        <button onClick={() => setSearchParams({type: "simple"})}
+        >Simple</button>
+        <button
+        onClick={() => setSearchParams({type: "luxury"})}
+        >Luxury</button>
+        <button
+        onClick={() => setSearchParams({type: "rugged"})}
+        >Rugged</button>
+        <button
+        onClick={() => setSearchParams("")}
+        >Clear Filter</button>
             <div className="van-list">
                 {vansElement}
             </div>
