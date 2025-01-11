@@ -1,5 +1,5 @@
 export async function getData(){
-    const res = await fetch("api/vans");
+    const res = await fetch("/api/vans");
     if (!res.ok) {
         throw {
             message: "Failed to fetch vans", 

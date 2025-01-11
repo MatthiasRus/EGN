@@ -2,8 +2,9 @@ import React from "react";
 import { Link, useSearchParams, useLoaderData } from "react-router-dom";
 import { getData } from "../../api";
 
-export function loader(){
-    return 'Vans data goes here.'
+export async function loader(){
+        const data = await getData();
+        return data;
 }
 
 export default function Vans() {
@@ -14,23 +15,19 @@ export default function Vans() {
 
     const typeFilter = searchParams.get("type");
     const data = useLoaderData();
-    console.log(data)
+    
     React.useEffect(() => {
-        async function getVans(){
+        (async function(){
             setLoading(true)
             try{
                 const data = await getData();
                 setVansData(data);
-        }catch(err){
-            
-    console.log(err)
-            setError(err)
-        }finally{
-            setLoading(false)
-        } 
-        }
-
-        getVans()
+            }catch(err){
+                setError(err)
+            }finally{
+                setLoading(false)
+            } 
+        })();
     }, []); 
 
     const filteredElement = typeFilter

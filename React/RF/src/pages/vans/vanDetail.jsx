@@ -13,13 +13,14 @@ export default function VanDetail() {
                 setVan(data.vans)
         })();
     },[params.id]);
-    const search = location.state?.search || ""
+    const search = location.state?.search || "";
+    console.log(search)
   return (
     <div className="van-detail-container">
       <Link
         to={`..${search}`}
         relative="path"
-      >&larr; back to {location.state.type || 'all'} vans</Link>
+      >&larr; back to {location.state?.type || 'all'} vans</Link>
     {van ? (
         <div className="van-detail">
             <img src={van.imageUrl} />
