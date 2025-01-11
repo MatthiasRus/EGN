@@ -2,35 +2,18 @@ import React from "react";
 import { Link, useSearchParams, useLoaderData } from "react-router-dom";
 import { getData } from "../../api";
 
-export async function loader(){
-        const data = await getData();
-        return data;
-}
+export function loader() {
+        return getData();
+  }
 
 export default function Vans() {
-    const [vansData, setVansData] = React.useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
-    const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(null);
 
     const typeFilter = searchParams.get("type");
-    const data = useLoaderData();
+    const vansData = useLoaderData();
     
-    React.useEffect(() => {
-        (async function(){
-            setLoading(true)
-            try{
-                const data = await getData();
-                setVansData(data);
-            }catch(err){
-                setError(err)
-            }finally{
-                setLoading(false)
-            } 
-        })();
-    }, []); 
-
-    const filteredElement = typeFilter
+       const filteredElement = typeFilter
         ? vansData.filter(van => van.type === typeFilter)
         : vansData;
         
@@ -65,9 +48,6 @@ export default function Vans() {
             }
             return prevParams;
         });
-    }
-    if(loading) {
-        return <h1>Loading...</h1>
     }
 
     if(error){

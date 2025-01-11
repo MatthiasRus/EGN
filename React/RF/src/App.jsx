@@ -16,17 +16,17 @@ import HostVansPricing from './pages/host/vans/HostVansPricing.jsx'
 import HostVansLayout from './components/HostVanLayout.jsx'
 import HostVansPhotos from './pages/host/vans/HostVansPhotos.jsx'
 import NotFound from './pages/NotFound.jsx'
-
+import Error from './components/Error.jsx'
 const router = createBrowserRouter(createRoutesFromElements(
 <Route path='/' element={<Layout/>}>
               <Route index element={<div className='Home'><Home /></div>} />
-              <Route path='vans' element={<Vans/>} loader={vansLoader}/>
+              <Route path='vans' element={<Vans/>} loader={vansLoader} errorElement={<Error/>}/>
               <Route path="about" element={<About />} />
               <Route path="vans/:id" element={<VanDetail/>}/>
               <Route path='/host' element={<HostLayout/>}>
                     <Route index element={<Dashboard/>}/>
                     <Route path='income' element={<Income/>}/>
-                    <Route path='vans' element={<HostVans/>}/>
+                    <Route path='vans' element={<HostVans/>} />
                     <Route path='vans/:id' element={<HostVansLayout/>}>
                         <Route index element={<HostVansDetail/>}/>
                         <Route path='pricing' element={<HostVansPricing/>}/>

@@ -80,6 +80,7 @@ createServer({
     this.timing = 2000;
     
     this.get("/vans", (schema, request) => {
+      // throw new Response(400, {}, {error: "Error fetching data"}) // Manual error checkup 
       return schema.vans.all();
     });
 
